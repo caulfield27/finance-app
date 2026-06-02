@@ -18,7 +18,7 @@ export const seedTransactions: Transaction[] = [
 export const seedGoals: Goal[] = [
   {
     id: uid(), title: "Подушка безопасности", target: 300000, saved: 145000,
-    emoji: "🛡️", color: "#0ecb81", deadline: subDays(new Date(), -120).toISOString(),
+    icon: "shield", color: "#0ecb81", deadline: subDays(new Date(), -120).toISOString(),
     createdAt: iso(60), reminderTime: "20:00",
     contributions: [
       { id: uid(), amount: 50000, date: iso(45) },
@@ -28,7 +28,7 @@ export const seedGoals: Goal[] = [
   },
   {
     id: uid(), title: "Отпуск в Японии", target: 250000, saved: 60000,
-    emoji: "🗾", color: "#f6465d", deadline: subDays(new Date(), -200).toISOString(),
+    icon: "plane", color: "#f6465d", deadline: subDays(new Date(), -200).toISOString(),
     createdAt: iso(40), reminderTime: "21:00",
     contributions: [
       { id: uid(), amount: 30000, date: iso(30) },
@@ -37,7 +37,7 @@ export const seedGoals: Goal[] = [
   },
   {
     id: uid(), title: "MacBook Pro", target: 220000, saved: 220000,
-    emoji: "💻", color: "#fcd535", createdAt: iso(90),
+    icon: "laptop", color: "#fcd535", createdAt: iso(90),
     contributions: [{ id: uid(), amount: 220000, date: iso(10) }],
   },
 ];

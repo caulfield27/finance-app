@@ -32,7 +32,7 @@ export function useReminders() {
         const due = now.getHours() > h || (now.getHours() === h && now.getMinutes() >= m);
         if (due) {
           notifications.show(
-            `Не забудь про цель «${goal.title}» ${goal.emoji}`,
+            `Не забудь про цель «${goal.title}»`,
             "Ты ещё не пополнял её сегодня. Даже небольшой вклад приближает результат!",
           );
           firedToday.current.add(key);

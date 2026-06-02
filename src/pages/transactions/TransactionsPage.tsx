@@ -45,7 +45,7 @@ export function TransactionsPage() {
         <select value={category} onChange={(e) => setCategory(e.target.value)}
           className="ml-auto h-9 rounded-md border border-hairline-dark bg-surface-card px-3 text-[13px] text-white">
           <option value="all">Все категории</option>
-          {cats.map((c) => <option key={c.id} value={c.id}>{c.emoji} {c.label}</option>)}
+          {cats.map((c) => <option key={c.id} value={c.id}>{c.label}</option>)}
         </select>
       </div>
 

@@ -2,6 +2,7 @@ import { useSettings } from "@/entities/account";
 import { notifications } from "@/features/reminders";
 import { Button, Card, CardTitle, Input } from "@/shared/ui";
 import { useState } from "react";
+import { Check } from "lucide-react";
 
 export function SettingsPage() {
   const s = useSettings();
@@ -10,7 +11,7 @@ export function SettingsPage() {
   const enableNotifications = async () => {
     const ok = await notifications.request();
     setPermState(notifications.permission());
-    if (ok) notifications.show("Уведомления включены ✅", "Будем напоминать про цели, если ты забудешь пополнить.");
+    if (ok) notifications.show("Уведомления включены", "Будем напоминать про цели, если ты забудешь пополнить.");
   };
 
   return (
@@ -52,7 +53,9 @@ export function SettingsPage() {
           </Button>
         )}
         {permState === "granted" && (
-          <p className="mt-3 text-[13px] text-trading-up">✅ Браузер разрешил уведомления</p>
+          <p className="mt-3 flex items-center gap-1.5 text-[13px] text-trading-up">
+            <Check className="h-4 w-4" /> Браузер разрешил уведомления
+          </p>
         )}
         {permState === "denied" && (
           <p className="mt-2 text-[12px] text-muted">Уведомления заблокированы в настройках браузера — включи их вручную.</p>

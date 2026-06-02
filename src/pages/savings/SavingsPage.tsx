@@ -4,6 +4,7 @@ import { AddGoalForm } from "@/features/add-goal/AddGoalForm";
 import { ContributeForm } from "@/features/contribute-goal/ContributeForm";
 import { Button, Card, Modal } from "@/shared/ui";
 import { formatMoney } from "@/shared/config/currency";
+import { Plus, Target } from "lucide-react";
 
 export function SavingsPage() {
   const { data: goals = [], isLoading } = useGoals();
@@ -24,11 +25,14 @@ export function SavingsPage() {
           <p className="tabular mt-1 text-3xl font-bold text-primary">{formatMoney(totalSaved)}</p>
           <p className="tabular mt-1 text-[13px] text-muted">из {formatMoney(totalTarget)}</p>
         </Card>
-        <Button className="ml-4" onClick={() => setAddOpen(true)}>+ Новая цель</Button>
+        <Button className="ml-4" onClick={() => setAddOpen(true)}><Plus className="h-4 w-4" /> Новая цель</Button>
       </div>
 
       {goals.length === 0 ? (
-        <Card><p className="py-12 text-center text-sm text-muted">Создай первую цель и начни копить 🎯</p></Card>
+        <Card className="flex flex-col items-center gap-2 py-12">
+          <Target className="h-8 w-8 text-muted" />
+          <p className="text-sm text-muted">Создай первую цель и начни копить</p>
+        </Card>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {goals.map((g) => (

@@ -2,17 +2,17 @@ import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { goalSchema, type GoalForm } from "./schema";
 import { useAddGoal } from "@/entities/goal";
+import { GOAL_ICONS } from "@/shared/config/goalIcons";
 import { Button, Input } from "@/shared/ui";
 import { cn } from "@/shared/lib/cn";
 
-const EMOJIS = ["🎯", "🛡️", "🏖️", "🚗", "🏠", "💻", "🎓", "💍", "📱", "✈️"];
 const COLORS = ["#fcd535", "#0ecb81", "#f6465d", "#3b82f6", "#2dbdb6", "#a855f7"];
 
 export function AddGoalForm({ onDone }: { onDone?: () => void }) {
   const add = useAddGoal();
   const { register, handleSubmit, control, reset, formState: { errors } } = useForm<GoalForm>({
     resolver: zodResolver(goalSchema),
-    defaultValues: { emoji: "🎯", color: "#fcd535", reminderTime: "20:00" },
+    defaultValues: { icon: "target", color: "#fcd535", reminderTime: "20:00" },
   });
 
   const onSubmit = handleSubmit(async (values) => {
@@ -33,14 +33,14 @@ export function AddGoalForm({ onDone }: { onDone?: () => void }) {
         <span className="mb-1.5 block text-[13px] font-medium text-muted-strong">Иконка</span>
         <Controller
           control={control}
-          name="emoji"
+          name="icon"
           render={({ field }) => (
             <div className="flex flex-wrap gap-2">
-              {EMOJIS.map((e) => (
-                <button key={e} type="button" onClick={() => field.onChange(e)}
-                  className={cn("h-10 w-10 rounded-md border text-lg transition-colors",
-                    field.value === e ? "border-primary bg-primary/10" : "border-hairline-dark hover:border-muted")}>
-                  {e}
+              {GOAL_ICONS.map(({ key, icon: Icon }) => (
+                <button key={key} type="button" onClick={() => field.onChange(key)}
+                  className={cn("flex h-10 w-10 items-center justify-center rounded-md border transition-colors",
+                    field.value === key ? "border-primary bg-primary/10 text-primary" : "border-hairline-dark text-muted hover:border-muted hover:text-white")}>
+                  <Icon className="h-5 w-5" />
                 </button>
               ))}
             </div>

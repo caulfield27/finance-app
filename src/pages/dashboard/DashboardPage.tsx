@@ -6,6 +6,7 @@ import { SpendingByCategory } from "@/widgets/dashboard/SpendingByCategory";
 import { CashflowTrend } from "@/widgets/dashboard/CashflowTrend";
 import { GoalContributionChart } from "@/widgets/dashboard/GoalContributionChart";
 import { Card, CardTitle } from "@/shared/ui";
+import { Bell } from "lucide-react";
 
 export function DashboardPage() {
   const { data: tx = [], isLoading } = useTransactions();
@@ -23,11 +24,12 @@ export function DashboardPage() {
       <StatCards totals={totals} budget={budget} />
 
       {nudges.length > 0 && (
-        <Card className="border-primary/30 bg-primary/5">
+        <Card className="flex items-center gap-3 border-primary/30 bg-primary/5">
+          <Bell className="h-5 w-5 shrink-0 text-primary" />
           <p className="text-sm text-body">
-            🔔 У тебя <span className="font-semibold text-primary">{nudges.length}</span>{" "}
+            У тебя <span className="font-semibold text-primary">{nudges.length}</span>{" "}
             {nudges.length === 1 ? "цель ждёт" : "целей ждут"} пополнения сегодня:{" "}
-            {nudges.map((g) => `${g.emoji} ${g.title}`).join(", ")}
+            {nudges.map((g) => g.title).join(", ")}
           </p>
         </Card>
       )}

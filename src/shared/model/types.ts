@@ -15,7 +15,7 @@ export interface Goal {
   title: string;
   target: number;
   saved: number;
-  emoji: string;
+  icon: string;
   color: string;
   deadline?: string; // ISO
   createdAt: string;

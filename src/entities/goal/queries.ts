@@ -9,7 +9,7 @@ export function useGoals() {
   return useQuery({ queryKey: KEY, queryFn: db.getGoals });
 }
 
-export type NewGoal = Pick<Goal, "title" | "target" | "emoji" | "color" | "deadline" | "reminderTime">;
+export type NewGoal = Pick<Goal, "title" | "target" | "icon" | "color" | "deadline" | "reminderTime">;
 
 export function useAddGoal() {
   const qc = useQueryClient();

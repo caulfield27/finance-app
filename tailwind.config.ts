@@ -27,8 +27,10 @@ export default {
         turquoise: "#2dbdb6",
       },
       fontFamily: {
-        sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
-        mono: ["IBM Plex Mono", "JetBrains Mono", "monospace"],
+        // BinanceNova first, Inter as the open-source substitute
+        sans: ["BinanceNova", "Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
+        // BinancePlex first, IBM Plex Sans (its open-source basis) as substitute
+        number: ["BinancePlex", "IBM Plex Sans", "Inter", "sans-serif"],
       },
       borderRadius: {
         xs: "2px", sm: "4px", md: "6px", lg: "8px", xl: "12px", pill: "9999px",

@@ -58,22 +58,25 @@ export function AddTransactionForm({ onDone }: { onDone?: () => void }) {
           name="categoryId"
           render={({ field }) => (
             <div className="grid grid-cols-4 gap-2">
-              {categories.map((c) => (
-                <button
-                  key={c.id}
-                  type="button"
-                  onClick={() => field.onChange(c.id)}
-                  className={cn(
-                    "flex flex-col items-center gap-1 rounded-md border p-2 text-[12px] transition-colors",
-                    field.value === c.id
-                      ? "border-primary bg-primary/10 text-white"
-                      : "border-hairline-dark text-muted hover:border-muted",
-                  )}
-                >
-                  <span className="text-lg">{c.emoji}</span>
-                  {c.label}
-                </button>
-              ))}
+              {categories.map((c) => {
+                const Icon = c.icon;
+                return (
+                  <button
+                    key={c.id}
+                    type="button"
+                    onClick={() => field.onChange(c.id)}
+                    className={cn(
+                      "flex flex-col items-center gap-1 rounded-md border p-2 text-[12px] transition-colors",
+                      field.value === c.id
+                        ? "border-primary bg-primary/10 text-white"
+                        : "border-hairline-dark text-muted hover:border-muted",
+                    )}
+                  >
+                    <Icon className="h-5 w-5" style={{ color: field.value === c.id ? c.color : undefined }} />
+                    {c.label}
+                  </button>
+                );
+              })}
             </div>
           )}
         />

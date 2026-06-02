@@ -8,7 +8,17 @@
     <title>Finance App — расходы и накопления</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <!--
+      Binance ships proprietary BinanceNova (text/display) + BinancePlex (numbers).
+      They can't be bundled legally, so we list them first in the font stack and
+      fall back to the closest open-source matches:
+        BinanceNova  → Inter
+        BinancePlex  → IBM Plex Sans (BinancePlex is derived from IBM Plex)
+    -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div id="root"></div>

@@ -33,13 +33,17 @@ export function SpendingByCategory({ tx }: { tx: Transaction[] }) {
             </div>
           </div>
           <ul className="flex-1 space-y-2">
-            {data.slice(0, 6).map((d) => (
-              <li key={d.id} className="flex items-center gap-2 text-sm">
-                <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: d.color }} />
-                <span className="flex-1 text-body">{d.emoji} {d.label}</span>
-                <span className="tabular text-muted-strong">{((d.value / total) * 100).toFixed(0)}%</span>
-              </li>
-            ))}
+            {data.slice(0, 6).map((d) => {
+              const Icon = d.icon;
+              return (
+                <li key={d.id} className="flex items-center gap-2 text-sm">
+                  <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: d.color }} />
+                  <Icon className="h-4 w-4 text-muted" />
+                  <span className="flex-1 text-body">{d.label}</span>
+                  <span className="tabular text-muted-strong">{((d.value / total) * 100).toFixed(0)}%</span>
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}

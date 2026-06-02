@@ -1,12 +1,15 @@
 import { formatMoney } from "@/shared/config/currency";
+import { getGoalIcon } from "@/shared/config/goalIcons";
 import { Progress } from "@/shared/ui";
 import { cn } from "@/shared/lib/cn";
+import { Lightbulb, Trash2 } from "lucide-react";
 import type { Goal } from "@/shared/model/types";
 import { contributedToday, daysLeft, isComplete, progress, suggestedDaily } from "./selectors";
 
 interface Props { goal: Goal; onContribute?: (id: string) => void; onDelete?: (id: string) => void; }
 
 export function GoalCard({ goal, onContribute, onDelete }: Props) {
+  const Icon = getGoalIcon(goal.icon);
   const pct = progress(goal);
   const done = isComplete(goal);
   const left = daysLeft(goal);
@@ -16,8 +19,10 @@ export function GoalCard({ goal, onContribute, onDelete }: Props) {
   return (
     <div className="group rounded-xl bg-surface-card p-5 border border-hairline-dark/60">
       <div className="mb-3 flex items-start gap-3">
-        <div className="flex h-11 w-11 items-center justify-center rounded-lg text-xl"
-          style={{ backgroundColor: `${goal.color}1a` }}>{goal.emoji}</div>
+        <div className="flex h-11 w-11 items-center justify-center rounded-lg"
+          style={{ backgroundColor: `${goal.color}1a`, color: goal.color }}>
+          <Icon className="h-5 w-5" />
+        </div>
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
             <h3 className="truncate font-semibold text-white">{goal.title}</h3>
@@ -30,7 +35,9 @@ export function GoalCard({ goal, onContribute, onDelete }: Props) {
         </div>
         {onDelete && (
           <button onClick={() => onDelete(goal.id)} aria-label="Удалить цель"
-            className="text-muted opacity-0 transition-opacity hover:text-trading-down group-hover:opacity-100">✕</button>
+            className="text-muted opacity-0 transition-opacity hover:text-trading-down group-hover:opacity-100">
+            <Trash2 className="h-4 w-4" />
+          </button>
         )}
       </div>
 
@@ -46,8 +53,9 @@ export function GoalCard({ goal, onContribute, onDelete }: Props) {
       </div>
 
       {daily && !done && (
-        <p className="mb-3 rounded-md bg-surface-elevated px-3 py-2 text-[12px] text-muted-strong">
-          💡 Чтобы успеть к сроку — откладывай по <span className="tabular text-white">{formatMoney(daily)}</span>/день
+        <p className="mb-3 flex items-center gap-2 rounded-md bg-surface-elevated px-3 py-2 text-[12px] text-muted-strong">
+          <Lightbulb className="h-3.5 w-3.5 shrink-0 text-primary" />
+          Откладывай по <span className="tabular text-white">{formatMoney(daily)}</span>/день, чтобы успеть
         </p>
       )}
 
