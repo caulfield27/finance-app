@@ -4,6 +4,7 @@ import { EXPENSE_CATEGORIES, INCOME_CATEGORIES } from "@/shared/config/categorie
 import { humanDate } from "@/shared/lib/date";
 import { Card } from "@/shared/ui";
 import { cn } from "@/shared/lib/cn";
+import { AnimatePresence } from "framer-motion";
 import type { TransactionType } from "@/shared/model/types";
 
 type Filter = "all" | TransactionType;
@@ -55,7 +56,9 @@ export function TransactionsPage() {
         grouped.map(([date, items]) => (
           <Card key={date}>
             <p className="mb-2 text-[12px] font-medium uppercase tracking-wide text-muted">{humanDate(date + "T00:00:00.000Z")}</p>
-            {items.map((t) => <TransactionItem key={t.id} tx={t} onDelete={del.mutate} />)}
+            <AnimatePresence initial={false}>
+              {items.map((t) => <TransactionItem key={t.id} tx={t} onDelete={del.mutate} />)}
+            </AnimatePresence>
           </Card>
         ))
       )}

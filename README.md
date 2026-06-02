@@ -76,6 +76,7 @@
 | Стили | Tailwind CSS (токены из дизайн-системы Binance) |
 | Графики | Recharts |
 | Иконки | lucide-react |
+| Анимации | Framer Motion |
 | Роутинг | React Router |
 | Даты | date-fns |
 
@@ -136,6 +137,7 @@ npm run lint       # ESLint
 - **Семантика направления:** зелёный `#0ecb81` (доход/рост), красный `#f6465d` (расход/падение) — только для цифр и направления, не как фон карточек
 - **Шрифты:** Binance использует проприетарные **BinanceNova** (текст/заголовки) и **BinancePlex** (цифры). Бандлить их нельзя, поэтому они стоят первыми в font-stack, а как open-source замены подключены **Inter** (вместо BinanceNova) и **IBM Plex Sans** (BinancePlex основан именно на IBM Plex) с табличными цифрами `tabular-nums` для ровных колонок сумм
 - **Иконки:** [lucide-react](https://lucide.dev) — единый набор по всему интерфейсу (категории, навигация, цели), цвет наследуется от акцента категории/цели
+- **Анимации:** [Framer Motion](https://www.framer.com/motion/) — переходы между страницами, появление модалок (fade + scale), stagger-появление карточек, плавный enter/exit списков операций и целей, tap-фидбек на кнопках. Уважает системную настройку `prefers-reduced-motion` через `MotionConfig reducedMotion="user"`
 
 ---
 

@@ -7,6 +7,7 @@ import { CashflowTrend } from "@/widgets/dashboard/CashflowTrend";
 import { GoalContributionChart } from "@/widgets/dashboard/GoalContributionChart";
 import { Card, CardTitle } from "@/shared/ui";
 import { Bell } from "lucide-react";
+import { AnimatePresence } from "framer-motion";
 
 export function DashboardPage() {
   const { data: tx = [], isLoading } = useTransactions();
@@ -44,7 +45,9 @@ export function DashboardPage() {
         <Card>
           <CardTitle className="mb-3">Последние операции</CardTitle>
           <div>
-            {tx.slice(0, 6).map((t) => <TransactionItem key={t.id} tx={t} onDelete={del.mutate} />)}
+            <AnimatePresence initial={false}>
+              {tx.slice(0, 6).map((t) => <TransactionItem key={t.id} tx={t} onDelete={del.mutate} />)}
+            </AnimatePresence>
             {tx.length === 0 && <p className="py-8 text-center text-sm text-muted">Нет операций</p>}
           </div>
         </Card>

@@ -5,6 +5,7 @@ import { ContributeForm } from "@/features/contribute-goal/ContributeForm";
 import { Button, Card, Modal } from "@/shared/ui";
 import { formatMoney } from "@/shared/config/currency";
 import { Plus, Target } from "lucide-react";
+import { AnimatePresence } from "framer-motion";
 
 export function SavingsPage() {
   const { data: goals = [], isLoading } = useGoals();
@@ -35,9 +36,11 @@ export function SavingsPage() {
         </Card>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {goals.map((g) => (
-            <GoalCard key={g.id} goal={g} onContribute={setContributeId} onDelete={del.mutate} />
-          ))}
+          <AnimatePresence mode="popLayout">
+            {goals.map((g) => (
+              <GoalCard key={g.id} goal={g} onContribute={setContributeId} onDelete={del.mutate} />
+            ))}
+          </AnimatePresence>
         </div>
       )}
 
